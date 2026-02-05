@@ -26,7 +26,7 @@ export function Game({ increaseScore, resetScore }) {
   let DOMChars = Object.entries(characters);
 
   return (
-    <div>
+    <div className="game-container">
       {shuffleArray(DOMChars).map((char) => (
         <Card key={char[1].name} {...char[1]} onClick={handleClickedChars} />
       ))}

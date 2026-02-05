@@ -12,10 +12,8 @@ export function Card({ url, onClick }) {
 
   if (data) {
     return (
-      <button id={data.id} onClick={(e) => onClick(e)}>
-        <p>
-          <strong>{data.name.toUpperCase()}</strong>
-        </p>
+      <button className="card" id={data.id} onClick={(e) => onClick(e)}>
+        <p>{data.name.toUpperCase()}</p>
         <img
           src={data.sprites.other.dream_world.front_default}
           alt={data.name}
