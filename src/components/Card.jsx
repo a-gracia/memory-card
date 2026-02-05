@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 
-export function Card({ url, onClick }) {
+export function Card({ id, onClick }) {
   let [data, setData] = useState();
 
   useEffect(() => {
-    console.log(url);
-    fetch(url)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((response) => response.json())
       .then((json) => setData(json));
   }, []);

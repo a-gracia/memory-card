@@ -2,8 +2,20 @@ import { useEffect, useState } from "react";
 import { Card } from "./Card";
 
 export function Game({ increaseScore, resetScore }) {
-  let [characters, setCharacters] = useState({});
+  let [characters, setCharacters] = useState([]);
   let [clickedChars, setClickedChars] = useState([]);
+
+  useEffect(() => {
+    const charsId = [];
+    while (charsId.length < 12) {
+      const newCharId = getRandomInt(1, 150);
+
+      if (!charsId.includes(newCharId)) {
+        charsId.push(newCharId);
+      }
+    }
+    setCharacters(charsId);
+  }, []);
 
   const handleClickedChars = (e) => {
     let id = e.currentTarget.id;
@@ -17,20 +29,10 @@ export function Game({ increaseScore, resetScore }) {
     }
   };
 
-  useEffect(() => {
-    fetch(
-      `https://pokeapi.co/api/v2/pokemon/?limit=12&offset=${getRandomInt(0, 139)}`,
-    )
-      .then((response) => response.json())
-      .then((json) => setCharacters(json.results));
-  }, []);
-
-  let DOMChars = Object.entries(characters);
-
   return (
     <div className="game-container">
-      {shuffleArray(DOMChars).map((char) => (
-        <Card key={char[1].name} {...char[1]} onClick={handleClickedChars} />
+      {shuffleArray(characters).map((char) => (
+        <Card key={char} id={char} onClick={handleClickedChars} />
       ))}
     </div>
   );
