@@ -18,7 +18,9 @@ export function Game({ increaseScore, resetScore }) {
   };
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/?limit=12`)
+    fetch(
+      `https://pokeapi.co/api/v2/pokemon/?limit=12&offset=${getRandomInt(0, 139)}`,
+    )
       .then((response) => response.json())
       .then((json) => setCharacters(json.results));
   }, []);
@@ -42,3 +44,9 @@ const shuffleArray = (array) => {
   }
   return newArr;
 };
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
