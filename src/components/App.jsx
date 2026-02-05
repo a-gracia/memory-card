@@ -8,14 +8,18 @@ function App() {
 
   currentScore > maxScore ? setMaxScore(currentScore) : null;
 
-  const handleCurrentScore = () => {
+  const increaseScore = () => {
     setCurrentScore(currentScore + 1);
+  };
+
+  const resetScore = () => {
+    setCurrentScore(0);
   };
 
   return (
     <>
       <TopBar currentScore={currentScore} maxScore={maxScore} />
-      <Game />
+      <Game increaseScore={increaseScore} resetScore={resetScore} />
     </>
   );
 }
