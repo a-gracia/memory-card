@@ -7,7 +7,7 @@ export function Game({ increaseScore, resetScore }) {
 
   useEffect(() => {
     const charsId = [];
-    while (charsId.length < 12) {
+    while (charsId.length < 20) {
       const newCharId = getRandomInt(1, 150);
 
       if (!charsId.includes(newCharId)) {
